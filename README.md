@@ -3,6 +3,10 @@ __Re:combine__ is a working prototype of _SQLite_ database generator for commonl
 Developed by friendly request, it was initially an internal utility and focuses now on pure line/sec performace.  
 __Latest version:__ https://github.com/Guevara-chan/Re-combine/releases/download/v0.01/Re.combine.zip (direct link)
 
+# 「Featuræ」
+* No limits on input directory total size and branching.
+* Optimized non-script conversion engine.
+
 # 「Reassembling」
 __Re:combine__  was developed entirelly in [Boo v0.9.7.0](https://github.com/boo-lang/boo), with help of [System.Data.SQLite](https://system.data.sqlite.org) external library package.  
 It requires .NET 4.0 framework to run, though confirmed as being mostly compatible with [Mono 4.6.2+](https://github.com/mono/mono).
