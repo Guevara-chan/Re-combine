@@ -5,7 +5,8 @@ __Latest version:__ https://github.com/Guevara-chan/Re-combine/releases/download
 
 # 「Featuræ」
 * No limits on input directory total size and branching.
-* Optimized non-script conversion engine.
+* Progress tracking between conversion sessions.
+* Optimized non-script parsing engine.
 
 # 「Reassembling」
 __Re:combine__  was developed entirelly in [Boo v0.9.7.0](https://github.com/boo-lang/boo), with help of [System.Data.SQLite](https://system.data.sqlite.org) external library package.  
