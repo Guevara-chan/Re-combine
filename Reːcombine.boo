@@ -87,12 +87,13 @@ class Feed((string)*):
 	static def from_dir(path as string) as Feed*:
 		tree = DirectoryInfo(path)
 		for branch in tree.GetDirectories():
-			for leaflet in Feed.from_dir(branch.FullName): yield leaflet
+			for leaflet in from_dir(branch.FullName): yield leaflet
 		for leaflet in tree.GetFiles(): yield Feed(leaflet.FullName)
 
 	[Extension] static def count(text as string, mark as char):
 		found = 0
 		bytes = text.ToCharArray()
+
 		pos	= bytes.Length
 		while pos--:
 			found++ if bytes[pos] == mark
