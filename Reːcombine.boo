@@ -61,7 +61,7 @@ class Pipe():
 		for feed in feeds: absorb(feed)
 
 	[Extension] static def decolon(text as string):
-		return text.Replace('ː', ':')
+		return text.Replace(char('ː'), char(':'))
 
 	[Extension] static def esc(text as string):
 		return Regex.Replace(text, "\\p{C}+", string.Empty).Replace("'", "''")
@@ -87,13 +87,12 @@ class Feed((string)*):
 	static def from_dir(path as string) as Feed*:
 		tree = DirectoryInfo(path)
 		for branch in tree.GetDirectories():
-			for leaflet in from_dir(branch.FullName): yield leaflet
+			for leaflet in Feed.from_dir(branch.FullName): yield leaflet
 		for leaflet in tree.GetFiles(): yield Feed(leaflet.FullName)
 
 	[Extension] static def count(text as string, mark as char):
 		found = 0
 		bytes = text.ToCharArray()
-
 		pos	= bytes.Length
 		while pos--:
 			found++ if bytes[pos] == mark
