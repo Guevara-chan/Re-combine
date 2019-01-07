@@ -71,6 +71,7 @@ class Pipe():
 # -------------------- #
 class Feed((string)*):
 	public final src as string
+	static final delim = char(':')
 
 	# --Methods goes here.
 	def constructor(path as string):
@@ -81,7 +82,7 @@ class Feed((string)*):
 
 	def GetEnumerator():
 		for line in File.ReadLines(src):
-			yield line.Split(char(':')) if line.count(char(':')) == 1
+			yield line.Split(delim) if line.count(delim) == 1
 
 	static def from_dir(path as string) as Feed*:
 		tree = DirectoryInfo(path)
