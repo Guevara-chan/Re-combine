@@ -81,13 +81,21 @@ class Feed((string)*):
 
 	def GetEnumerator():
 		for line in File.ReadLines(src):
-			yield line.Split(char(':')) if Regex.Matches(line, ":").Count == 1
+			yield line.Split(char(':')) if line.count(char(':')) == 1
 
 	static def from_dir(path as string) as Feed*:
 		tree = DirectoryInfo(path)
 		for branch in tree.GetDirectories():
 			for leaflet in Feed.from_dir(branch.FullName): yield leaflet
 		for leaflet in tree.GetFiles(): yield Feed(leaflet.FullName)
+
+	[Extension] static def count(text as string, mark as char):
+		found = 0
+		bytes = text.ToCharArray()
+		pos	= bytes.Length
+		while pos--:
+			found++ if bytes[pos] == mark
+		return found
 # -------------------- #
 class CUI():
 	# --Constants goes here--
