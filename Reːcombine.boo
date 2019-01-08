@@ -7,7 +7,6 @@ import System
 import System.IO
 import System.Collections
 import System.Collections.Generic
-import System.Text.RegularExpressions
 import System.Runtime.CompilerServices
 import System.Data.SQLite from 'lib/System.Data.SQLite'
 
@@ -64,7 +63,17 @@ class Pipe():
 		return text.Replace(char('ː'), char(':'))
 
 	[Extension] static def esc(text as string):
-		return Regex.Replace(text, "\\p{C}+", string.Empty).Replace("'", "''")
+		# Init setup.
+		chars	= text.ToCharArray()
+		result	= Text.StringBuilder()
+		pos, size = 0, chars.Length-1
+		# Escapation loop.
+		while pos++ < size:
+			if (chr = chars[pos]) == 39: result.Append("''")
+			elif chr < 0x20: pass
+			else: result.Append(chr)
+		# Finalization.
+		return result.ToString()
 
 	[Extension] static def account[of T](num as T, countable as string):
 		return ("No " if 0 == num else "$num ") + countable + ("" if 1 == num else "s")
