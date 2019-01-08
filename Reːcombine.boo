@@ -48,7 +48,7 @@ class Pipe():
 		log("Pairs to SQL: $(feed.src.decolon())", "begin")
 		for entry in feed:
 			accum.Add("insert into data (mail, pass) values ('$(entry[0].esc())', '$(entry[1].esc())');")
-			if accum.Count >= 1000: flush()
+			flush() if accum.Count >= 1000
 		flush() if accum.Count
 		log("$(FileInfo(feed.src).Length.account('byte')) converted.\n", "sum")
 		# Reporting finish.
