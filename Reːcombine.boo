@@ -91,7 +91,7 @@ class Feed((string)*):
 
 	def GetEnumerator():
 		for line in File.ReadLines(src):
-			yield line.Split(delim) if line.count(delim) == 1
+			yield (line[0:pos=line.IndexOf(delim)], line[pos:]) if line.count(delim) == 1
 
 	static def from_dir(path as string) as Feed*:
 		tree = DirectoryInfo(path)
